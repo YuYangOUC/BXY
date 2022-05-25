@@ -1,0 +1,31 @@
+<wxs src="../../utils/wxs/util.wxs" module="wxs" />
+
+<scroll-view scroll-y bindrefresherrefresh="refreshPage" refresher-enabled refresher-triggered="{{isTriggered}}"
+	bindscrolltolower="loadMore" lower-threshold="100">
+
+	<view class="pageContainer">
+		<view class="collectItem" wx:for="{{collectList}}" wx:for-item="collectItem" wx:key="id">
+			<view class="title">
+				{{collectItem.Title}}
+			</view>
+			<view class="summary">
+				{{collectItem.Summary}}
+			</view>
+			<view class="url">
+				{{collectItem.LinkUrl}}
+			</view>
+			<view class="bottom">
+				<view class="date">
+					收藏于 {{wxs.dateSub(collectItem.DateAdded)}}
+				</view>
+				<view class="delete">删除</view>
+			</view>
+		</view>
+	</view>
+	<!-- 下滑触底加载更多 -->
+	<view wx:if="{{!showLoading}}" class="noMore">---  暂无更多  ---</view>
+	<view wx:else class="weui-loadmore">
+		<view class="weui-loading"></view>
+		<view class="weui-loadmore__tips">正在加载</view>
+	</view>
+</scroll-view>

@@ -1,0 +1,52 @@
+<wxs src="../../utils/wxs/util.wxs" module="wxs" />
+
+<view class="statusDetails">
+	<view class="statusContainer">
+		<!-- 闪存信息头 -->
+		<view class="header">
+			<image class="avatar"
+				src='{{statusInfo.UserIconUrl ? statusInfo.UserIconUrl : "/static/images/missing-face.png"}}'>
+			</image>
+			<view>
+				<view class="username">{{statusInfo.UserDisplayName ? statusInfo.UserDisplayName : '无名氏'}}
+				</view>
+				<view class="date">{{wxs.dateSub(statusInfo.DateAdded)}}</view>
+			</view>
+			<view class="commentCount">
+				<image src="/static/images/comment.png"></image>
+				<text>{{statusInfo.CommentCount}}</text>
+			</view>
+		</view>
+		<!-- 闪存内容 -->
+		<view class="content">
+			<text>{{statusInfo.Content}}</text>
+		</view>
+		<!-- 提交评论 -->
+		<view class="submit">
+			<input placeholder="输入评论" bindinput="handleInput" />
+			<button size="mini" type="primary" plain bindtap="submitComment">提交评论</button>
+		</view>
+	</view>
+	<view class="commentsContainer">
+		<view class="head">
+			<image src="/static/images/comment.png"></image>
+			<text>评论区</text>
+		</view>
+		
+		<!-- 暂无评论 -->
+		<view wx:if="{{statusComments.length == 0}}" class="noComment">--- 暂时没有评论 ---</view>
+		<view class="commentItem" wx:for="{{statusComments}}" wx:key="Id" wx:for-item="commentItem">
+			<view class="header">
+				<image class="avatar"
+					src='{{commentItem.UserIconUrl ? commentItem.UserIconUrl : "/static/images/missing-face.png"}}'>
+				</image>
+				<view class="username">{{commentItem.UserDisplayName ? commentItem.UserDisplayName : '无名氏'}}
+				</view>
+				<view class="date">{{wxs.dateSub(commentItem.DateAdded)}}</view>
+			</view>
+			<view class="content">
+				<text>{{commentItem.Content}}</text>
+			</view>
+		</view>
+	</view>
+</view>

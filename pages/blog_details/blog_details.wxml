@@ -1,0 +1,31 @@
+<import src="../../utils/wxParse/wxParse.wxml" />
+<wxs src="../../utils/wxs/util.wxs" module="wxs" />
+
+<view class="title">{{articleInfo.Title}}</view>
+
+<view class="wxParse">
+	<template is="wxParse" data="{{wxParseData:articleContent.nodes}}" />
+</view>
+
+<view class="commentsContainer">
+	<view class="head">
+		<image src="/static/images/comment.png"></image>
+		<text>评论区</text>
+	</view>
+	
+	<!-- 暂无评论 -->
+	<view wx:if="{{articleComments.length == 0}}" class="noComment">--- 暂时没有评论 ---</view>
+	<view class="commentItem" wx:for="{{articleComments}}" wx:key="Id" wx:for-item="commentItem">
+		<view class="header">
+			<image class="avatar"
+				src='{{commentItem.FaceUrl ? commentItem.FaceUrl : "/static/images/missing-face.png"}}'>
+			</image>
+			<view class="username">{{commentItem.Author ? commentItem.Author : '无名氏'}}
+			</view>
+			<view class="date">{{wxs.dateSub(commentItem.DateAdded)}}</view>
+		</view>
+		<view class="content">
+			<text>{{commentItem.Body}}</text>
+		</view>
+	</view>
+</view>

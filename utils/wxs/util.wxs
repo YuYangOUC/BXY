@@ -1,0 +1,11 @@
+var dateSub = function (date) {
+	if (date == undefined) {
+		return;
+	} else {
+		return date.slice(5, 10) + ' ' + date.slice(11, 16);
+	}
+}
+
+module.exports = {
+	dateSub: dateSub
+}

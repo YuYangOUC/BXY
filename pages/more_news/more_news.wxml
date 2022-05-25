@@ -1,0 +1,137 @@
+<wxs src="../../utils/wxs/util.wxs" module="wxs" />
+
+<view class="indexContainer">
+	<!-- 三个标签栏 -->
+	<view class="swiper-tab">
+		<view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="switchNav">最新发布</view>
+		<view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="switchNav">推荐新闻</view>
+		<view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="switchNav">热门新闻</view>
+	</view>
+
+	<swiper class="swiper" current="{{currentTab}}" duration="400" bindchange="bindChange">
+		<swiper-item>
+			<scroll-view scroll-y bindrefresherrefresh="refreshLastedNews" refresher-enabled
+				refresher-triggered="{{isTriggered}}" bindscrolltolower="loadMoreLastedNews" lower-threshold="100">
+
+				<view class="pageContainer">
+					<view class="pageItem" wx:for="{{lastedNewsList}}" wx:key="Id" wx:for-item="lastedNewsItem"
+						hover-class="pageItem-hover" bindtap="toArticleDetails" data-item="{{lastedNewsItem}}">
+
+						<text class="title">{{lastedNewsItem.Title}}</text>
+						<view class="content">
+							<image src="{{lastedNewsItem.TopicIcon}}" mode="aspectFit"></image>
+							<text>{{lastedNewsItem.Summary}}</text>
+						</view>
+						<view class="bottom">
+							<!-- 显示浏览数、点赞数、评论数 -->
+							<view class="count">
+								<view class="viewCount">
+									<image src="/static/images/view.png"></image>
+									<text>{{lastedNewsItem.ViewCount}}</text>
+								</view>
+								<view class="diggCount">
+									<image src="/static/images/digg.png"></image>
+									<text>{{lastedNewsItem.DiggCount}}</text>
+								</view>
+								<view class="commentCount">
+									<image src="/static/images/comment.png"></image>
+									<text>{{lastedNewsItem.CommentCount}}</text>
+								</view>
+							</view>
+							<view class="date">{{wxs.dateSub(lastedNewsItem.DateAdded)}}</view>
+						</view>
+					</view>
+				</view>
+				<!-- 下滑触底加载更多 -->
+				<view wx:if="{{!showLoading_lasted}}" class="noMore">--- 暂无更多 ---</view>
+				<view wx:else class="weui-loadmore">
+					<view class="weui-loading"></view>
+					<view class="weui-loadmore__tips">正在加载</view>
+				</view>
+			</scroll-view>
+		</swiper-item>
+		<swiper-item>
+			<scroll-view scroll-y bindrefresherrefresh="refreshRecommendedNews" refresher-enabled
+				refresher-triggered="{{isTriggered}}" bindscrolltolower="loadMoreRecommendedNews" lower-threshold="100">
+
+				<view class="pageContainer">
+					<view class="pageItem" wx:for="{{recommendedNewsList}}" wx:key="Id"
+						wx:for-item="recommendedNewsItem" hover-class="pageItem-hover" bindtap="toArticleDetails"
+						data-item="{{recommendedNewsItem}}">
+
+						<text class="title">{{recommendedNewsItem.Title}}</text>
+						<view class="content">
+							<image src="{{recommendedNewsItem.TopicIcon}}" mode="aspectFit"></image>
+							<text>{{recommendedNewsItem.Summary}}</text>
+						</view>
+						<view class="bottom">
+							<!-- 显示浏览数、点赞数、评论数 -->
+							<view class="count">
+								<view class="viewCount">
+									<image src="/static/images/view.png"></image>
+									<text>{{recommendedNewsItem.ViewCount}}</text>
+								</view>
+								<view class="diggCount">
+									<image src="/static/images/digg.png"></image>
+									<text>{{recommendedNewsItem.DiggCount}}</text>
+								</view>
+								<view class="commentCount">
+									<image src="/static/images/comment.png"></image>
+									<text>{{recommendedNewsItem.CommentCount}}</text>
+								</view>
+							</view>
+							<view class="date">{{wxs.dateSub(recommendedNewsItem.DateAdded)}}</view>
+						</view>
+					</view>
+				</view>
+				<!-- 下滑触底加载更多 -->
+				<view wx:if="{{!showLoading_recommended}}" class="noMore">--- 暂无更多 ---</view>
+				<view wx:else class="weui-loadmore">
+					<view class="weui-loading"></view>
+					<view class="weui-loadmore__tips">正在加载</view>
+				</view>
+			</scroll-view>
+		</swiper-item>
+		<swiper-item>
+			<scroll-view scroll-y bindrefresherrefresh="refreshHotNews" refresher-enabled
+				refresher-triggered="{{isTriggered}}" bindscrolltolower="loadMoreHotNews" lower-threshold="100">
+
+				<view class="pageContainer">
+					<view class="pageItem" wx:for="{{hotNewsList}}" wx:key="Id" wx:for-item="hotNewsItem"
+						hover-class="pageItem-hover" bindtap="toArticleDetails" data-item="{{hotNewsItem}}">
+
+						<text class="title">{{hotNewsItem.Title}}</text>
+						<view class="content">
+							<image src="{{hotNewsItem.TopicIcon}}" mode="aspectFit"></image>
+							<text>{{hotNewsItem.Summary}}</text>
+						</view>
+						<view class="bottom">
+							<!-- 显示浏览数、点赞数、评论数 -->
+							<view class="count">
+								<view class="viewCount">
+									<image src="/static/images/view.png"></image>
+									<text>{{hotNewsItem.ViewCount}}</text>
+								</view>
+								<view class="diggCount">
+									<image src="/static/images/digg.png"></image>
+									<text>{{hotNewsItem.DiggCount}}</text>
+								</view>
+								<view class="commentCount">
+									<image src="/static/images/comment.png"></image>
+									<text>{{hotNewsItem.CommentCount}}</text>
+								</view>
+							</view>
+							<view class="date">{{wxs.dateSub(hotNewsItem.DateAdded)}}</view>
+						</view>
+					</view>
+				</view>
+				<!-- 下滑触底加载更多 -->
+				<view wx:if="{{!showLoading_hot}}" class="noMore">--- 暂无更多 ---</view>
+				<view wx:else class="weui-loadmore">
+					<view class="weui-loading"></view>
+					<view class="weui-loadmore__tips">正在加载</view>
+				</view>
+			</scroll-view>
+		</swiper-item>
+	</swiper>
+</view>

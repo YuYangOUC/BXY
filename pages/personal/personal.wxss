@@ -1,0 +1,183 @@
+.personalContainer {
+	width: 100%;
+	height: 100%;
+}
+
+.personalContainer .user-section {
+	height: 520rpx;
+	position: relative;
+	padding: 100rpx 30rpx 0;
+}
+
+.user-section .bg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.9;
+	/* filter: blur(1rpx); */
+}
+
+.user-info-box {
+	height: 180rpx;
+	display: flex;
+	align-items: center;
+	position: relative;
+	z-index: 1;
+}
+
+.user-info-box .avatar {
+	width: 130rpx;
+	height: 130rpx;
+	border: 3rpx solid #fff;
+	border-radius: 50%;
+}
+
+.user-info-box .username {
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #222222;
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+	margin-left: 30rpx;
+}
+
+.vip-card-box {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	background: linear-gradient(left, red, black);
+	background: rgba(0, 0, 0, .7);
+	height: 270rpx;
+	color: #f7d680;
+	border-radius: 20rpx 20rpx 0 0;
+	padding: 20rpx 24rpx;
+}
+
+.vip-card-box .b-btn {
+	position: absolute;
+	right: 20rpx;
+	top: 22rpx;
+	width: 225rpx;
+	height: 40rpx;
+	text-align: center;
+	line-height: 40rpx;
+	font-size: 28rpx;
+	color: #36343c;
+	border-radius: 20px;
+	background: #f9e6af;
+	z-index: 1;
+}
+
+.vip-card-box .title {
+	display: flex;
+	align-items: center;
+	font-size: 29rpx;
+	color: #f7d680;
+	margin-bottom: 10rpx;
+}
+
+.vip-card-box .title image {
+	height: 34rpx;
+	width: 34rpx;
+	margin-right: 8rpx;
+}
+
+.vip-card-box .e-m {
+	font-size: 33rpx;
+	margin-top: 10rpx;
+	text-align: center;
+}
+
+.vip-card-box .e-b {
+	font-size: 28rpx;
+	color: #d8cba9;
+	margin-top: 10rpx;
+}
+
+.cover-container {
+	margin-top: -160rpx;
+	padding: 0 30rpx;
+	position: relative;
+	background: #f5f5f5;
+	padding-bottom: 20rpx;
+}
+
+.cover-container .arc {
+	position: absolute;
+	left: 0;
+	top: -34rpx;
+	width: 100%;
+	height: 36rpx;
+}
+
+/* 导航部分 */
+.cover-container .nav-section {
+	display: flex;
+	background: #fff;
+	padding: 15rpx 0;
+	border-radius: 20rpx;
+}
+
+.nav-section .nav-item {
+	width: 25%;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.nav-section .nav-item view {
+	font-size: 29rpx;
+	margin-bottom: 8rpx;
+}
+
+.nav-section .nav-item text {
+	font-size: 27rpx;
+	color: #666666;
+}
+
+/* 个人中心列表 */
+.personalContent {
+	background: #f5f5f5;
+	margin-top: 20rpx;
+	border-radius: 20rpx;
+}
+
+.cardList {
+	margin-top: 20rpx;
+}
+
+.cardList .card-item {
+	display: flex;
+	align-items: center;
+}
+
+.cardList .card-item image {
+	height: 35rpx;
+	width: 35rpx;
+	margin-right: 20rpx;
+}
+
+.cardList .card-item {
+	background-color: #ffffff;
+	margin-top: 20rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	padding: 10rpx 20rpx;
+	font-size: 31rpx;
+	color: #333;
+	border-radius: 24rpx;
+}
+
+.cardList .card-item .more {
+	margin-left: auto;
+	margin-right: 10rpx;
+}
+
+.personalContainer .bottom {
+	margin-top: 115rpx;
+	font-size: 29rpx;
+	color: #999999;
+	text-align: center;
+}

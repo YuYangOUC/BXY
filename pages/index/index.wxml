@@ -1,0 +1,107 @@
+<wxs src="../../utils/wxs/util.wxs" module="wxs" />
+
+<view class="indexContainer">
+	<!-- 两个标签栏 -->
+	<view class="swiper-tab">
+		<view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="switchNav">网站首页</view>
+		<view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="switchNav">精华区</view>
+	</view>
+
+	<swiper class="swiper" current="{{currentTab}}" duration="400" bindchange="bindChange">
+		<swiper-item>
+			<scroll-view scroll-y bindrefresherrefresh="refreshHomePage" refresher-enabled
+				refresher-triggered="{{isTriggered}}" bindscrolltolower="loadMoreHomePage" lower-threshold="100">
+
+				<view class="pageContainer">
+					<view class="pageItem" wx:for="{{homePageList}}" wx:key="Id" wx:for-item="homePageItem">
+						<!-- 博文信息头 -->
+						<view class="header" bindtap="toBlog" data-blogapp="{{homePageItem.BlogApp}}"
+							data-avatar="{{homePageItem.Avatar}}" data-Author="{{homePageItem.Author}}">
+							<image class="avatar"
+								src='{{homePageItem.Avatar ? homePageItem.Avatar : "/static/images/missing-face.png"}}'>
+							</image>
+							<view class="username">
+								{{homePageItem.Author ? homePageItem.Author : '无名氏'}}
+							</view>
+							<view class="date">{{wxs.dateSub(homePageItem.PostDate)}}</view>
+						</view>
+						<!-- 博文内容 -->
+						<view class="content" bindtap="toArticleDetails" hover-class="content-hover" data-item="{{homePageItem}}">
+							<view class="title">{{homePageItem.Title}}</view>
+							<text>{{homePageItem.Description}}</text>
+						</view>
+						<!-- 显示浏览数、点赞数、评论数 -->
+						<view class="count">
+							<view class="viewCount">
+								<image src="/static/images/view.png"></image>
+								<text>{{homePageItem.ViewCount}}</text>
+							</view>
+							<view class="diggCount">
+								<image src="/static/images/digg.png"></image>
+								<text>{{homePageItem.DiggCount}}</text>
+							</view>
+							<view class="commentCount">
+								<image src="/static/images/comment.png"></image>
+								<text>{{homePageItem.CommentCount}}</text>
+							</view>
+						</view>
+					</view>
+				</view>
+				<!-- 下滑触底加载更多 -->
+				<view wx:if="{{!showLoading_homePage}}" class="noMore">--- 暂无更多 ---</view>
+				<view wx:else class="weui-loadmore">
+					<view class="weui-loading"></view>
+					<view class="weui-loadmore__tips">正在加载</view>
+				</view>
+			</scroll-view>
+		</swiper-item>
+		<swiper-item>
+			<scroll-view scroll-y bindrefresherrefresh="refreshEssence" refresher-enabled
+				refresher-triggered="{{isTriggered}}" bindscrolltolower="loadMoreEssence" lower-threshold="100">
+
+				<view class="pageContainer">
+					<view class="pageItem" wx:for="{{essenceList}}" wx:key="Id" wx:for-item="essenceItem">
+						<!-- 博文信息头 -->
+						<view class="header" bindtap="toBlog" data-blogapp="{{essenceItem.BlogApp}}"
+							data-avatar="{{essenceItem.Avatar}}" data-Author="{{essenceItem.Author}}">
+							<image class="avatar"
+								src='{{essenceItem.Avatar ? essenceItem.Avatar : "/static/images/missing-face.png"}}'>
+							</image>
+							<view class="username">
+								{{essenceItem.Author ? essenceItem.Author : '无名氏'}}
+							</view>
+							<view class="date">{{wxs.dateSub(essenceItem.PostDate)}}</view>
+						</view>
+						<!-- 博文内容 -->
+						<view class="content" bindtap="toArticleDetails" hover-class="content-hover"
+							data-item="{{essenceItem}}">
+							<view class="title">{{essenceItem.Title}}</view>
+							<text>{{essenceItem.Description}}</text>
+						</view>
+						<!-- 显示浏览数、点击数、评论数 -->
+						<view class="count">
+							<view class="viewCount">
+								<image src="/static/images/view.png"></image>
+								<text>{{essenceItem.ViewCount}}</text>
+							</view>
+							<view class="diggCount">
+								<image src="/static/images/digg.png"></image>
+								<text>{{essenceItem.DiggCount}}</text>
+							</view>
+							<view class="commentCount">
+								<image src="/static/images/comment.png"></image>
+								<text>{{essenceItem.CommentCount}}</text>
+							</view>
+						</view>
+					</view>
+				</view>
+				<!-- 下滑触底加载更多 -->
+				<view wx:if="{{!showLoading_essence}}" class="noMore">--- 暂无更多 ---</view>
+				<view wx:else class="weui-loadmore">
+					<view class="weui-loading"></view>
+					<view class="weui-loadmore__tips">正在加载</view>
+				</view>
+			</scroll-view>
+		</swiper-item>
+	</swiper>
+</view>

@@ -1,0 +1,47 @@
+<wxs src="../../utils/wxs/util.wxs" module="wxs" />
+
+<scroll-view scroll-y bindrefresherrefresh="refreshPage" refresher-enabled refresher-triggered="{{isTriggered}}"
+	bindscrolltolower="loadMore" lower-threshold="100">
+	<view class="user-info">
+		<view class="author">{{author ? author : '游客'}}</view>
+		<image class="avatar" src='{{avatar ? avatar : "/static/images/missing-face.png"}}' mode="aspectFit">
+		</image>
+	</view>
+	<view class="bgImage">
+		<image src='{{avatar ? avatar : "/static/images/missing-face.png"}}' />
+	</view>
+
+	<view class="pageContainer">
+		<view class="blogItem" wx:for="{{blogList}}" wx:for-item="blogItem" wx:key="Id" bindtap="toArticleDetails"
+			data-item="{{blogItem}}">
+			<view class="title">{{blogItem.Title}}</view>
+			<view class="description">
+				{{blogItem.Description}}
+			</view>
+			<view class="count">
+				<view class="viewCount">
+					<image src="/static/images/view.png"></image>
+					<text>{{blogItem.ViewCount}}</text>
+				</view>
+				<view class="diggCount">
+					<image src="/static/images/digg.png"></image>
+					<text>{{blogItem.DiggCount}}</text>
+				</view>
+				<view class="commentCount">
+					<image src="/static/images/comment.png"></image>
+					<text>{{blogItem.CommentCount}}</text>
+				</view>
+			</view>
+			<view class="bottom">
+				<view class="date">发布于 {{wxs.dateSub(blogItem.PostDate)}}</view>
+				<view class="delete">删除</view>
+			</view>
+		</view>
+	</view>
+	<!-- 下滑触底加载更多 -->
+	<view wx:if="{{!showLoading}}" class="noMore">--- 暂无更多 ---</view>
+	<view wx:else class="weui-loadmore">
+		<view class="weui-loading"></view>
+		<view class="weui-loadmore__tips">正在加载</view>
+	</view>
+</scroll-view>

@@ -1,0 +1,47 @@
+{
+	"pages": [
+		"pages/index/index",
+		"pages/personal/personal",
+		"pages/login/login",
+		"pages/statuses/statuses",
+		"pages/blog_details/blog_details",
+		"pages/more_news/more_news",
+		"pages/status_details/status_details",
+		"pages/collection/collection",
+		"pages/blog/blog",
+		"pages/myStatuses/myStatuses",
+		"pages/news_details/news_details"
+	],
+	"window": {
+		"navigationBarTitleText": "博小园",
+		"navigationBarBackgroundColor": "#f33333",
+		"navigationBarTextStyle": "white"
+	},
+	"tabBar": {
+		"color": "#969696",
+		"selectedColor": "#f33333",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "主页",
+				"iconPath": "/static/images/tabs/tab-index.png",
+				"selectedIconPath": "/static/images/tabs/tab-index-active.png"
+			},
+			{
+				"pagePath": "pages/statuses/statuses",
+				"text": "闪存",
+				"iconPath": "/static/images/tabs/tab-statuses.png",
+				"selectedIconPath": "/static/images/tabs/tab-statuses-active.png"
+			},
+			{
+				"pagePath": "pages/personal/personal",
+				"text": "个人",
+				"iconPath": "/static/images/tabs/tab-personal.png",
+				"selectedIconPath": "/static/images/tabs/tab-personal-active.png"
+			}
+		]
+	},
+	"style": "v2",
+	"sitemapLocation": "sitemap.json"
+}

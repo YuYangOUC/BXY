@@ -1,0 +1,75 @@
+<wxs src="../../utils/wxs/util.wxs" module="wxs" />
+
+<scroll-view scroll-y bindrefresherrefresh="refreshPage" refresher-enabled refresher-triggered="{{isTriggered}}"
+	bindscrolltolower="loadMore" lower-threshold="100">
+
+	<!-- 热门新闻区域 -->
+	<view class="newsContainer">
+		<!-- 头部区域 -->
+		<view class="header">
+			<image src="/static/images/statuses/news.png"></image>
+			<text class="title">热门新闻</text>
+			<view class="more" bindtap="toMoreNews" hover-class="button-hover">更多新闻 ></view>
+		</view>
+		<!-- 内容区域 -->
+		<swiper class="newsSwiper" next-margin="60rpx" autoplay snap-to-edge>
+			<swiper-item wx:for="{{newsList}}" wx:key="Id" wx:for-item="newsItem" bindtap="toArticleDetails"
+				data-item="{{newsItem}}">
+
+				<view class="swiperItem" hover-class="button-hover">
+					<text class="title">{{newsItem.Title}}</text>
+					<view class="content">
+						<image src="{{newsItem.TopicIcon}}" mode="aspectFit"></image>
+						<text>{{newsItem.Summary}}</text>
+					</view>
+				</view>
+			</swiper-item>
+		</swiper>
+	</view>
+
+	<!-- 闪存区域 -->
+	<view class="statusesContainer">
+		<view class="statusItem" wx:for="{{statusesList}}" wx:key="Id" wx:for-item="statusItem"
+			bindtap="toStatusDetails" data-item="{{statusItem}}">
+			<!-- 闪存信息头 -->
+			<view class="header">
+				<image class="avatar"
+					src='{{statusItem.UserIconUrl ? statusItem.UserIconUrl : "/static/images/missing-face.png"}}'>
+				</image>
+				<view>
+					<view class="username">{{statusItem.UserDisplayName ? statusItem.UserDisplayName : '无名氏'}}
+					</view>
+					<view class="date">{{wxs.dateSub(statusItem.DateAdded)}}</view>
+				</view>
+				<view class="commentCount">
+					<image src="/static/images/comment.png"></image>
+					<text>{{statusItem.CommentCount}}</text>
+				</view>
+			</view>
+			<!-- 闪存内容 -->
+			<view class="content">
+				<text>{{statusItem.Content}}</text>
+			</view>
+		</view>
+	</view>
+
+	<!-- 下滑触底加载更多 -->
+	<view wx:if="{{!showLoading}}" class="noMore">--- 暂无更多 ---</view>
+	<view wx:else class="weui-loadmore">
+		<view class="weui-loading"></view>
+		<view class="weui-loadmore__tips">正在加载</view>
+	</view>
+</scroll-view>
+
+<!-- 发布闪存按钮 -->
+<movable-area>
+	<movable-view direction="all" out-of-bounds bindtap="modalinput">
+		<image src="/static/images/statuses/submit.png"></image>
+	</movable-view>
+</movable-area>
+
+<!-- 发布闪存的模态框 -->
+<modal hidden="{{hiddenmodalput}}" title="发布闪存" confirm-text="发布" cancel-text="取消" bindconfirm="submitStatus"
+	bindcancel="modalinput">
+	<textarea placeholder="请输入内容" bindinput="handleInput"></textarea>
+</modal>

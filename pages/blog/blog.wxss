@@ -1,0 +1,148 @@
+scroll-view {
+	height: calc(100vh);
+	background: #f5f5f5;
+}
+
+/*背景模糊图片*/
+.bgImage {
+	width: 100%;
+	height: 400rpx;
+	opacity: 0.8;
+	overflow: hidden;
+}
+
+.bgImage image {
+	width: 100%;
+	transform: scale(1.1);
+	filter: blur(10rpx);
+	-webkit-filter: blur(10rpx);
+	-moz-filter: blur(10rpx);
+	-ms-filter: blur(10rpx);
+	-o-filter: blur(10rpx);
+}
+
+/*头像和昵称*/
+.user-info {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	z-index: 1;
+	top: 345rpx;
+	right: 30rpx;
+}
+
+.user-info .author {
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #222222;
+	text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+	margin-left: auto;
+	margin-right: 30rpx;
+}
+
+.user-info .avatar {
+	width: 160rpx;
+	height: 160rpx;
+	border-radius: 20%;
+}
+
+.pageContainer {
+	padding: 125rpx 16rpx 1rpx 16rpx;
+}
+
+.blogItem {
+	margin-bottom: 20rpx;
+	padding: 15rpx 20rpx;
+	border-radius: 20rpx;
+	background: #fff;
+	box-shadow: 0 10rpx 15rpx -10rpx #222222;
+}
+
+.blogItem .title {
+	font-size: 31rpx;
+	margin-bottom: 15rpx;
+}
+
+.blogItem .description {
+	font-size: 27rpx;
+	color: #777777;
+	/* 多行文本溢出隐藏 省略号代替*/
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+}
+
+.blogItem .count {
+	display: flex;
+	align-items: center;
+	margin: 10rpx 0;
+}
+
+.blogItem .count view {
+	display: flex;
+	align-items: center;
+	margin-right: 35rpx;
+}
+
+.blogItem .count image {
+	height: 26rpx;
+	width: 26rpx;
+	margin-right: 10rpx;
+}
+
+.blogItem .count text {
+	font-size: 27rpx;
+	color: #777777;
+}
+
+.blogItem .bottom {
+	display: flex;
+}
+
+.blogItem .bottom .date {
+	font-size: 29rpx;
+	color: #5c4f4f;
+	margin-right: 40rpx;
+}
+
+.blogItem .bottom .delete {
+	font-size: 29rpx;
+	color: #2c63aa;
+}
+
+/* 下滑触底加载更多 */
+.noMore {
+	line-height: 60rpx;
+	margin: 0 16rpx 20rpx 16rpx;
+	border-radius: 24rpx;
+	font-size: 29rpx;
+	text-align: center;
+	background-color: #ffffff;
+	color: #666666;
+}
+
+.weui-loadmore {
+	margin: 0.7em auto;
+	font-size: 14px;
+	color: #666666;
+	text-align: center;
+}
+
+.weui-loading {
+	margin: 0 8px;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	vertical-align: middle;
+	-webkit-animation: weuiLoading 1s steps(12, end) infinite;
+	animation: weuiLoading 1s steps(12, end) infinite;
+	background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgxMDB2MTAwSDB6Ii8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTlFOUU5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTMwKSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iIzk4OTY5NyIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMDUuOTggNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjOUI5OTlBIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDYwIDc1Ljk4IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0EzQTFBMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSg5MCA2NSA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNBQkE5QUEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoMTIwIDU4LjY2IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0IyQjJCMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgxNTAgNTQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjQkFCOEI5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA1MCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDMkMwQzEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTE1MCA0NS45OCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDQkNCQ0IiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTEyMCA0MS4zNCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNEMkQyRDIiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDM1IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0RBREFEQSIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgtNjAgMjQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTJFMkUyIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKC0zMCAtNS45OCA2NSkiLz48L3N2Zz4=) no-repeat;
+	background-size: 100%;
+}
+
+.weui-loadmore__tips {
+	display: inline-block;
+	vertical-align: middle;
+}

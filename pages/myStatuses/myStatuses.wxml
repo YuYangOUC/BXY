@@ -1,0 +1,127 @@
+<wxs src="../../utils/wxs/util.wxs" module="wxs" />
+
+<view class="indexContainer">
+	<!-- 三个标签栏 -->
+	<view class="swiper-tab">
+		<view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="switchNav">我发布的</view>
+		<view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="switchNav">我关注的</view>
+		<view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="switchNav">我评论的</view>
+	</view>
+
+	<swiper class="swiper" current="{{currentTab}}" duration="400" bindchange="bindChange">
+		<swiper-item>
+			<scroll-view scroll-y bindrefresherrefresh="refreshMy" refresher-enabled
+				refresher-triggered="{{isTriggered}}" bindscrolltolower="loadMoreMy" lower-threshold="100">
+
+				<!-- 闪存区域 -->
+				<view class="statusesContainer">
+					<view class="statusItem" wx:for="{{myList}}" wx:key="Id" wx:for-item="statusItem"
+						bindtap="toStatusDetails" data-item="{{statusItem}}">
+						<!-- 闪存信息头 -->
+						<view class="header">
+							<image class="avatar"
+								src='{{statusItem.UserIconUrl ? statusItem.UserIconUrl : "/static/images/missing-face.png"}}'>
+							</image>
+							<view>
+								<view class="username">
+									{{statusItem.UserDisplayName ? statusItem.UserDisplayName : '无名氏'}}
+								</view>
+								<view class="date">{{wxs.dateSub(statusItem.DateAdded)}}</view>
+							</view>
+							<view class="commentCount">
+								<image src="/static/images/comment.png"></image>
+								<text>{{statusItem.CommentCount}}</text>
+							</view>
+						</view>
+						<!-- 闪存内容 -->
+						<view class="content">
+							<text>{{statusItem.Content}}</text>
+						</view>
+					</view>
+				</view>
+				<!-- 下滑触底加载更多 -->
+				<view wx:if="{{!showLoading_my}}" class="noMore">---  暂无更多  ---</view>
+				<view wx:else class="weui-loadmore h1">
+					<view class="weui-loading"></view>
+					<view class="weui-loadmore__tips">正在加载</view>
+				</view>
+			</scroll-view>
+		</swiper-item>
+		<swiper-item>
+			<scroll-view scroll-y bindrefresherrefresh="refreshFollowing" refresher-enabled
+				refresher-triggered="{{isTriggered}}" bindscrolltolower="loadMoreFollowing" lower-threshold="100">
+
+				<!-- 闪存区域 -->
+				<view class="statusesContainer">
+					<view class="statusItem" wx:for="{{followingList}}" wx:key="Id" wx:for-item="statusItem"
+						bindtap="toStatusDetails" data-item="{{statusItem}}">
+						<!-- 闪存信息头 -->
+						<view class="header">
+							<image class="avatar"
+								src='{{statusItem.UserIconUrl ? statusItem.UserIconUrl : "/static/images/missing-face.png"}}'>
+							</image>
+							<view>
+								<view class="username">
+									{{statusItem.UserDisplayName ? statusItem.UserDisplayName : '无名氏'}}
+								</view>
+								<view class="date">{{wxs.dateSub(statusItem.DateAdded)}}</view>
+							</view>
+							<view class="commentCount">
+								<image src="/static/images/comment.png"></image>
+								<text>{{statusItem.CommentCount}}</text>
+							</view>
+						</view>
+						<!-- 闪存内容 -->
+						<view class="content">
+							<text>{{statusItem.Content}}</text>
+						</view>
+					</view>
+				</view>
+				<!-- 下滑触底加载更多 -->
+				<view wx:if="{{!showLoading_following}}" class="noMore">---  暂无更多  ---</view>
+				<view wx:else class="weui-loadmore">
+					<view class="weui-loading"></view>
+					<view class="weui-loadmore__tips">正在加载</view>
+				</view>
+			</scroll-view>
+		</swiper-item>
+		<swiper-item>
+			<scroll-view scroll-y bindrefresherrefresh="refreshMyComment" refresher-enabled
+				refresher-triggered="{{isTriggered}}" bindscrolltolower="loadMoreMyComment" lower-threshold="100">
+
+				<!-- 闪存区域 -->
+				<view class="statusesContainer">
+					<view class="statusItem" wx:for="{{myCommentList}}" wx:key="Id" wx:for-item="statusItem"
+						bindtap="toStatusDetails" data-item="{{statusItem}}">
+						<!-- 闪存信息头 -->
+						<view class="header">
+							<image class="avatar"
+								src='{{statusItem.UserIconUrl ? statusItem.UserIconUrl : "/static/images/missing-face.png"}}'>
+							</image>
+							<view>
+								<view class="username">
+									{{statusItem.UserDisplayName ? statusItem.UserDisplayName : '无名氏'}}
+								</view>
+								<view class="date">{{wxs.dateSub(statusItem.DateAdded)}}</view>
+							</view>
+							<view class="commentCount">
+								<image src="/static/images/comment.png"></image>
+								<text>{{statusItem.CommentCount}}</text>
+							</view>
+						</view>
+						<!-- 闪存内容 -->
+						<view class="content">
+							<text>{{statusItem.Content}}</text>
+						</view>
+					</view>
+				</view>
+				<!-- 下滑触底加载更多 -->
+				<view wx:if="{{!showLoading_myComment}}" class="noMore">---  暂无更多  ---</view>
+				<view wx:else class="weui-loadmore">
+					<view class="weui-loading"></view>
+					<view class="weui-loadmore__tips">正在加载</view>
+				</view>
+			</scroll-view>
+		</swiper-item>
+	</swiper>
+</view>
